@@ -48,5 +48,21 @@ export class StudentsComponent implements OnInit{
     });
   }
 
+  deleteStudent(id: number){
+    const prompt = confirm("Are you sure you want to delete this student?");
+    if(prompt){
+      this.studentService.deleteStudent(id).subscribe({
+        next: (data: Student) => {
+          alert("Student Deleted Successfully.");
+          this.getAllStudents();
+        },
+        error: (err) => {
+          alert("There was an error when deleting student.");
+          console.error("Error Deleting Student: ", err);
+        }
+      });
+    }
+  }
+
 
 }

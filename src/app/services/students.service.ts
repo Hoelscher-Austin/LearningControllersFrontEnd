@@ -19,6 +19,8 @@ export class StudentsService {
   }
 
 
-
+  deleteStudent(id: number): Observable<Student>{
+    return this.http.delete<Student>(`http://localhost:5046/students/${id}`);
+  }
 
 }
