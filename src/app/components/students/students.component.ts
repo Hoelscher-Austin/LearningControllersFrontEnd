@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Student } from '../../models/students';
 import { StudentsService } from '../../services/students.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-students',
@@ -18,9 +18,9 @@ export class StudentsComponent implements OnInit{
 
   //Reactive Forms
   studentForm: FormGroup = new FormGroup({
-    name: new FormControl(""),
-    age: new FormControl(""),
-    year: new FormControl("")
+    name: new FormControl("", Validators.required),
+    age: new FormControl("", Validators.required),
+    year: new FormControl("", Validators.required)
   })
 
   ngOnInit(): void {
@@ -35,8 +35,17 @@ export class StudentsComponent implements OnInit{
     });
   }
 
-  submitStudent(){
-    
+  submitStudent() {
+    this.studentService.addNewStudent(this.studentForm.value).subscribe({
+      next: (data: Student) => {
+        alert(`Student added successfully!`);
+        this.getAllStudents();
+      },
+      error: (err) => {
+        alert(`There was an error when adding student: ${err}`);
+        console.error(`Error adding student:`, err);
+      }
+    });
   }
 
 

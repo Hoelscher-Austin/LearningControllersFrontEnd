@@ -43,10 +43,10 @@
     </div>
     <div class="col-4 pt-4">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-primary">
           Add Student
         </div>
-        <div class="card-body">
+        <div class="card-body bg-secondary">
           <form [formGroup]="studentForm">
             <div class="row">
               <label for="" class="form-label">Name</label>
@@ -61,7 +61,7 @@
               <input type="number" formControlName="age" class="form-control" />
             </div>
             <div class="row pt-2">
-              <button class="btn btn-success" (click)="submitStudent()">Submit</button>
+              <button class="btn btn-success" (click)="submitStudent()" [disabled]="studentForm.invalid">Submit</button>
             </div>
           </form>
         </div>

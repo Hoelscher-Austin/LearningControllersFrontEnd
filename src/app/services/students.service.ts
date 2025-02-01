@@ -13,4 +13,12 @@ export class StudentsService {
   getAllStudents(): Observable<Student[]>{
     return this.http.get<Student[]>('http://localhost:5046/students');
   }
+
+  addNewStudent(student: Student): Observable<Student>{
+    return this.http.post<Student>('http://localhost:5046/students',student);
+  }
+
+
+
+
 }
