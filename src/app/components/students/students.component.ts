@@ -13,6 +13,8 @@ export class StudentsComponent implements OnInit{
   
   //studentService: StudentsService = inject(StudentsService);
   studentList: Student[] = [];
+  overlay: boolean = false;
+  overlayId: number = 0;
 
   constructor(private studentService: StudentsService){}
 
@@ -27,7 +29,7 @@ export class StudentsComponent implements OnInit{
     this.getAllStudents();
   }
 
-
+  // HTTP Requests
   getAllStudents() {
     this.studentService.getAllStudents().subscribe((data: Student[]) => {
       this.studentList = data;
@@ -64,5 +66,35 @@ export class StudentsComponent implements OnInit{
     }
   }
 
+  updateStudent(id: number){
+    this.studentService.updateStudent(id,this.studentForm.value).subscribe({
+      next: (data: Student) => {
+        alert("Student Updated Successfully!");
+        this.getAllStudents();
+        this.closeOverlay();
+      },
+      error: (err) => {
+        alert("Error When Updating Student");
+        console.error("Error Updating Student: ", err);
+      }
+    })
+  }
+
+
+  // Form Overlay for POST Requests
+  showOverlay(student: Student){
+    this.overlay = true;
+    this.studentForm.patchValue(student);
+    this.overlayId = student.studentId;
+  }
+
+  closeOverlay(){
+    this.overlay = false;
+    this.studentForm.setValue({
+      name: "",
+      year: "",
+      age: ""
+    })
+  }
 
 }

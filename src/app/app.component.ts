@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HtmlThemeComponent } from "./components/reusableComponents/html-theme/html-theme.component";
 
 @Component({
   selector: 'app-root',

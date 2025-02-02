@@ -18,6 +18,9 @@ export class StudentsService {
     return this.http.post<Student>('http://localhost:5046/students',student);
   }
 
+  updateStudent(id: number,student: Student): Observable<Student> {
+    return this.http.put<Student>(`http://localhost:5046/students/${id}`,student);
+  }
 
   deleteStudent(id: number): Observable<Student>{
     return this.http.delete<Student>(`http://localhost:5046/students/${id}`);
