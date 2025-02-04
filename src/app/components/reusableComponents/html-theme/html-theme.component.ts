@@ -8,18 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HtmlThemeComponent {
 
-  theme: string = 'Dark';
+  theme: string = 'Light';
 
 
 
   setTheme(){
-    if(this.theme === 'Dark'){
+    if(this.theme === 'Light'){
       document.documentElement.setAttribute('data-bs-theme', 'light');
-      this.theme = 'Light';
+      this.theme = 'Dark';
     }
     else{
       document.documentElement.setAttribute('data-bs-theme','dark');
-      this.theme = 'Dark';
+      this.theme = 'Light';
     }
   }
 }
