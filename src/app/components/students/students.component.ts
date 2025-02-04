@@ -68,7 +68,7 @@ export class StudentsComponent implements OnInit{
 
   updateStudent(id: number){
     this.studentService.updateStudent(id,this.studentForm.value).subscribe({
-      next: (data: Student) => {
+      next: () => {
         alert("Student Updated Successfully!");
         this.getAllStudents();
         this.closeOverlay();
@@ -90,11 +90,7 @@ export class StudentsComponent implements OnInit{
 
   closeOverlay(){
     this.overlay = false;
-    this.studentForm.setValue({
-      name: "",
-      year: "",
-      age: ""
-    })
+    this.studentForm.reset();
   }
 
 }
